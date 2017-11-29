@@ -27,6 +27,7 @@ public class Tile {
         yCoordinate = newY;
     }
 
+
     /**
      * sets the letter value of the tile
      * @param newLetter desired letter value

@@ -118,4 +118,61 @@ public class Tests {
         assert (testSquare.getMultiplier() == 1 && testSquare.getMultiplyWord()==false);
     }
 
+    /**
+     * tests the player draw from bag function
+     */
+    @Test
+    public void playerDrawTest(){
+        Scrabble scrabble = new Scrabble();
+        scrabble.startGame();
+
+        int bagSize = scrabble.tileBag.bag.size();
+        scrabble.playerDraw();
+        assert(scrabble.playerTiles.size() == 7);
+        assert(scrabble.tileBag.bag.size() == bagSize - 7);
+
+        scrabble.playerTiles.remove(1);
+        scrabble.playerTiles.remove(2);
+        scrabble.playerDraw();
+        assert(scrabble.playerTiles.size() == 7);
+        assert(scrabble.tileBag.bag.size() == bagSize - 9);
+    }
+
+    /**
+     * tests the computer draw from bag function
+     */
+    @Test
+    public void computerDrawTest(){
+        Scrabble scrabble = new Scrabble();
+        scrabble.startGame();
+
+        int bagSize = scrabble.tileBag.bag.size();
+        scrabble.computerDraw();
+        assert(scrabble.computerTiles.size() == 7);
+        assert(scrabble.tileBag.bag.size() == bagSize - 7);
+
+        scrabble.computerTiles.remove(1);
+        scrabble.computerTiles.remove(2);
+        scrabble.computerDraw();
+        assert(scrabble.computerTiles.size() == 7);
+        assert(scrabble.tileBag.bag.size() == bagSize - 9);
+    }
+
+    /**
+     * tests the word check function
+     */
+    @Test
+    public void wordCheckTest(){
+        Scrabble scrabble = new Scrabble();
+        scrabble.startGame();
+
+        ArrayList<Tile> trueWord = new ArrayList<>();
+        trueWord.add(new Tile('A', 1, 1, 1));
+        trueWord.add(new Tile('B', 1, 1, 1));
+        assert(scrabble.playerWordCheck(trueWord) == true);
+
+        trueWord.add(new Tile('X',1,1, 1));
+        assert(scrabble.playerWordCheck(trueWord) == false);
+    }
+
 }
