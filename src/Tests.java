@@ -2,6 +2,7 @@ import org.junit.Test;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.stream.StreamSupport;
 
 /**
  * Created by shrey on 11/15/2017.
@@ -121,21 +122,21 @@ public class Tests {
     /**
      * tests the player draw from bag function
      */
+
     @Test
     public void playerDrawTest(){
-        Scrabble scrabble = new Scrabble();
-        scrabble.startGame();
+        ScrabbleInterface scrabble = new ScrabbleInterface();
 
         int bagSize = scrabble.tileBag.bag.size();
         scrabble.playerDraw();
         assert(scrabble.playerTiles.size() == 7);
-        assert(scrabble.tileBag.bag.size() == bagSize - 7);
+        assert(scrabble.tileBag.bag.size() == bagSize);
 
         scrabble.playerTiles.remove(1);
         scrabble.playerTiles.remove(2);
         scrabble.playerDraw();
         assert(scrabble.playerTiles.size() == 7);
-        assert(scrabble.tileBag.bag.size() == bagSize - 9);
+        assert(scrabble.tileBag.bag.size() == bagSize - 2);
     }
 
     /**
@@ -143,19 +144,19 @@ public class Tests {
      */
     @Test
     public void computerDrawTest(){
-        Scrabble scrabble = new Scrabble();
-        scrabble.startGame();
+        ScrabbleInterface scrabble = new ScrabbleInterface();
+        //scrabble.startGame();
 
         int bagSize = scrabble.tileBag.bag.size();
         scrabble.computerDraw();
         assert(scrabble.computerTiles.size() == 7);
-        assert(scrabble.tileBag.bag.size() == bagSize - 7);
+        assert(scrabble.tileBag.bag.size() == bagSize);
 
         scrabble.computerTiles.remove(1);
         scrabble.computerTiles.remove(2);
         scrabble.computerDraw();
         assert(scrabble.computerTiles.size() == 7);
-        assert(scrabble.tileBag.bag.size() == bagSize - 9);
+        assert(scrabble.tileBag.bag.size() == bagSize-2);
     }
 
     /**
